@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table style="border: solid;">
+        <tr>
+
+        </tr>
+    </table>
+    <script>
+        var cell, row;
+        row = document.getElementsByTagName('tr')[0];
+        var res = 1;
+        for(var i = 1; i < 6; i++){
+            res *= i;
+            cell = document.createElement('td')
+            cell.textContent = res;
+            row.appendChild(cell);
+        }
+    </script>
+  </body>
+
+</html>
+
+<!-- elle recharge 5 fois -->

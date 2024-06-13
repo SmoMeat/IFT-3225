@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Démonstration 1</title>
+</head>
+<body>
+    <form method="get" action="#">
+        <fieldset>
+            <legend>Personne 1</legend>
+            <p>
+                <label for="firstname">Prénom</label>
+                <input id="firstname" name="formFirstname" type="text" placeholder="Jean" required>
+                <label for="lastname">Nom de famille</label>
+                <input id="lastname" name="formLastname" type="text" placeholder="Guy">
+            </p>
+
+            <p>
+                <label for="gender">Genre</label>
+                <input id="gender" value="H" type="radio" name="formGender" required>Homme
+                <input id="gender" value="F" type="radio" name="formGender" required>Femme
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Informations personnelles</legend>
+
+            <p>
+                <label for="address">Addresse</label>
+                <input id="address" type="text" name="formAddress">
+
+                <br>
+
+                <label for="zipcode">Code postal</label>
+                <input id="zipcode" type="text" name="formZipcode" size="8" maxlength="6">
+
+                <label for="city">Ville de résidence</label>
+                <input id="city" type="text" name="formCity">
+            </p>
+
+            <p>
+                <label for="birthdate">Date de naissance</label>
+                <input id="birthdate" type="date" name="formBirthdate">
+
+                <br>
+
+                <label for="birthplace">Lieu de naissance</label>
+                <input id="birthplace" type="text">
+            </p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Informations complémentaires</legend>
+
+            <p>
+                <label for="infos">Message</label>
+                <br>
+                <textarea id="infos" rows="10" cols="80" placeholder="Entrez votre message"></textarea>
+            </p>
+
+            <p>
+                <button></button>
+            </p>
+        </fieldset>
+    </form>
+</body>
+</html>

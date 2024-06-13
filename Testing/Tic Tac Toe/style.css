@@ -1,0 +1,12 @@
+td {
+    border: 1px solid;
+    width: 3em;
+    height: 3em;
+    padding: 0.2em;
+    text-align: center;
+}
+
+/* table {
+    border: 1px solid;
+    border-color: blue;
+} */
