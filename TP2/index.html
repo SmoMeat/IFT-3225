@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script type="text/javascript" src="script.js"></script>
 </head>
-<body>
+<body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container-fluid">
@@ -17,67 +16,113 @@
         </nav>
     </header>
 
-    <div>
-        <button>Premiere tache</button>
-        <button>Deuxieme tache</button>
+    <div class="container">
+        <div class="text-center m-5" id="menu">
+            <h1 class="fw-bold fs-1">Projet de bio-informatique</h1>
+            <h3 class="fw-light fs-5 lh-1">Technologies de l'Internet (IFT-3225)</h3>
+            <h3 class="fw-light fs-5 lh-1">Travail pratique 1</h3>
+            <p>Cette page web a été réalisé dans le cadre du premier travail pratique du cours des Technologies de l'Internet (IFT-3225) à l'Université de Montréal. Le but du projet est de créer
+                une application côté client qui permet de répondre à des questions de bio-informatique. Ce projet est réalisé avec Bootstrap et Javascript.</p>
+            
+            <a href="#first-task" role="button" class="btn btn-primary btn-lg">Premiere tache</a>
+            <a href="#second-task" role="button" class="btn btn-secondary btn-lg my-1">Deuximème tache</a>
+        </div>
     </div>
       
-    <div class="container">
+    <div class="container" id="first-task">
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 border border-5 border-primary rounded-4 padding p-3 d-flex text-center row bg-primary-subtle"  id="main-div">
-                <!-- style="height: 30vh; width: 50vw;" -->
-                <div class="col-md-4 mb-1 box align-self-center">
-                    <form name="task1" onchange="getCodon()" action="" method="">
-                        <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-                            <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-U" autocomplete="off" value="U" checked>
-                            <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-U">U</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-C" autocomplete="off" value="C">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-C">C</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-A" autocomplete="off" value="A">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-A">A</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-G" autocomplete="off" value="G">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-G">G</label>
-                        </div>
-                        <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-                            <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-U" autocomplete="off"  value="U" checked>
-                            <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-U">U</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-C" autocomplete="off" value="C">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-C">C</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-A" autocomplete="off" value="A">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-A">A</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-G" autocomplete="off" value="G">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-G">G</label>
-                        </div>
-                        <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-                            <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-U" autocomplete="off"  value="U" checked>
-                            <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-U">U</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-C" autocomplete="off" value="C">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-C">C</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-A" autocomplete="off" value="A">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-A">A</label>
-                            <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-G" autocomplete="off" value="G">
-                            <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-G">G</label>
-                        </div>
-                    </form>
+            <div class="col-md-8 ">
+                <div class="row rounded-top bg-dark-subtle p-2">
+                    <div class="col-md-3 p-0 fw-semibold">
+                        Formation d'un acide aminé:
+                    </div>
+                    <div class="col-md-9 p-0 fw-light">
+                        séléctionner 3 nucélotides pour observer l'acide aminé formé
+                    </div>  
                 </div>
-                <div class="col-md-8 box align-self-center"> <!--  flex-grow-2 -->
-                    <div class="container text-center">
-                        <div class="row-1 align-self-center">
-                            <h3 id="txt-amino-acid">(PHE) - Phénylalanine</h3>
-                        </div>
-                        <div class="border border-black rounded row-3 align-content-center" style="height: 150px;">
-                            <img src="./content/amino_acids/phe.png" style="height: 95%; width: auto;" alt="Amino acid" id="img-amino-acid">
+                <div class="row rounded-bottom-4 padding p-3  text-center bg-white">
+                    <div class="col-md-4 mb-1 box align-self-center">
+                        <form name="task1" onchange="getCodon()" action="" method="">
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+                                <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-U" autocomplete="off" value="U" checked>
+                                <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-U">U</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-C" autocomplete="off" value="C">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-C">C</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-A" autocomplete="off" value="A">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-A">A</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-G" autocomplete="off" value="G">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-G">G</label>
+                            </div>
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+                                <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-U" autocomplete="off"  value="U" checked>
+                                <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-U">U</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-C" autocomplete="off" value="C">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-C">C</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-A" autocomplete="off" value="A">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-A">A</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-G" autocomplete="off" value="G">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-G">G</label>
+                            </div>
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+                                <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-U" autocomplete="off"  value="U" checked>
+                                <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-U">U</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-C" autocomplete="off" value="C">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-C">C</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-A" autocomplete="off" value="A">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-A">A</label>
+                                <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-G" autocomplete="off" value="G">
+                                <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-G">G</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-8 box align-self-center">
+                        <div class="container text-center">
+                            <div class="row-1 align-self-center">
+                                <h3 id="txt-amino-acid">(PHE) - Phénylalanine</h3>
+                            </div>
+                            <div class="border border-black rounded row-3 align-content-center" style="height: 150px;">
+                                <img src="./content/amino_acids/phe.png" style="height: 95%; width: auto;" alt="Amino acid" id="img-amino-acid">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-2"></div>
         </div>
+        <div class="row m-4"></div>
     </div>
 
+    <div class="container" id="second-task"> 
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 ">
+                <div class="row rounded-top bg-dark-subtle p-2">
+                    <div class="col-md-2 p-0 fw-semibold">
+                        Suite de codons:
+                    </div>
+                    <div class="col-md-10 p-0 fw-light">
+                        entrez une chaine d'ARN
+                    </div>  
+                </div>
+                <div class="row rounded-bottom-4 padding p-3  text-center bg-white">
+                    
 
+                    <div style="height: 300px;"></div>
 
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row m-4"></div>
+    </div>
+
+    <footer>
+        <div class="text-center text-white p-3 bg-primary" style="background-color: rgba(0, 0, 0, 0.2);">
+            Réalisé par <a class="text-white" href="mailto: mathieu.ducharme@umontreal.ca" title="20297456">Mathieu Ducharme</a>
+            et <a class="text-white" href="mailto: ???@umontreal.ca" title="???">Laurent-Phillipe Roy-Lemaire </a>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
