@@ -139,3 +139,139 @@ AMINO_ACIDS = {
     "GGA": ["gly", "Glycine"],
     "GGG": ["gly", "Glycine"]
 }
+
+let index = 0;
+function highlightBases() {
+    const bases = document.querySelectorAll('.base');
+    if (index < bases.length) {
+        if (index === 0) {
+            bases[index].classList.add('highlight');
+            bases[index].querySelector('img').classList.add('show');
+        } else {
+            bases[index - 1].classList.remove('highlight');
+            bases[index - 1].querySelector('img').classList.remove('show');
+            bases[index].classList.add('highlight');
+            bases[index].querySelector('img').classList.add('show');
+        }
+        index++;
+    } else {
+        bases.forEach(base => {
+            base.classList.remove('highlight');
+            base.querySelector('img').classList.remove('show');
+        });
+        index = 0;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const startAnimation = document.getElementById("startAnimation");
+    const resetButton = document.getElementById("reset");
+    const arnChain = document.getElementById("arnChain");
+    const divAnim = document.getElementById("animation");
+    const arnList = document.getElementById("arnList");
+
+    let intervalId;
+    let index;
+
+    startAnimation.addEventListener('click', parseInput);
+    resetButton.addEventListener('click', reset);
+
+    function createLI(codon, code, fullname) {
+        let li = document.createElement('li');
+
+        let img = document.createElement('img');
+        img.src = `./content/amino_acids/${code}.png`;
+        img.alt = "Image";
+
+        let p = document.createElement('p');
+        p.textContent = `${codon} => ${code}, ${fullname}`;
+
+        li.appendChild(img);
+        li.appendChild(p);
+
+        return li;
+    }
+
+    function createDivForAnim(chunks) {
+        let d = document.createElement('div');
+        chunks.forEach((e) => {
+            let s = document.createElement('span');
+            let img = document.createElement('img');
+            if (e.length === 3) {
+                s.innerHTML = e;
+                let code = AMINO_ACIDS[e];
+                img.src = `./content/amino_acids/${code[0]}.png`;
+            } else {
+                img.src = `./content/amino_acids/stop.png`;
+            }
+            s.className = "base";
+            s.appendChild(img);
+            d.appendChild(s);
+            d.id = "divForAnim";
+        });
+        return d;
+    }
+
+    function parseInput() {
+        arnList.innerHTML = "";
+        arnChain.innerHTML = "";
+        divAnim.innerHTML = "";
+        const keys = ['U', 'C', 'A', 'G'];
+        const inp = textArea.value.toUpperCase();
+        for (const e of inp) {
+            if (!keys.includes(e)) {
+                alert("Sequence d'ARN invalide!");
+                textArea.value = "";
+                return;
+            }
+        }
+        textArea.value = "";
+        const res = inp.toUpperCase();
+        const chunks = res.match(/.{1,3}/g);
+        //arnChain.textContent = res;
+        arnList.innerHTML = "";
+
+        // create custom html element with the chunks to the be able to style it with anim
+
+        // ********
+
+        // BE ABLE TO MODIFY THE SPEED WITH A SLIDER
+
+        if (chunks !== null) {
+            for (let e of chunks) {
+                if (e.length === 3) {
+                    // codon = e
+                    let tableau = AMINO_ACIDS[e];
+                    let code = tableau[0];
+                    let fullname = tableau[1];
+                
+                    arnList.appendChild(createLI(e, code, fullname));
+                } else {
+                    console.log(`unfinished codon ${e}`);
+                }
+            }
+            let d = createDivForAnim(chunks);
+            divAnim.appendChild(d);
+
+            clearInterval(intervalId);
+            // ***
+            let animSpeed = 500;
+            intervalId = setInterval(highlightBases, animSpeed);
+        }
+    }
+
+    function reset() {
+        
+        // reset second part
+        clearInterval(intervalId);
+        let b = document.querySelectorAll("base");
+        b.forEach(base => {
+            base.classList.remove('highlight');
+            base.querySelector('img').classList.remove('show');
+        });
+        index = 0;
+        arnList.innerHTML = "";
+        arnChain.innerHTML = "";
+        divAnim.innerHTML = "";
+    }
+})
