@@ -79,7 +79,7 @@
                     <div class="col-md-4 mb-1 box align-self-center">
                         <form name="task1" onchange="getCodon()" action="" method="">
                             <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-                                <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-U" autocomplete="off" value="U" checked>
+                                <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-U" autocomplete="off" value="U" >
                                 <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-U">U</label>
                                 <input type="radio" class="btn-check" name="vbtn-radio-first-nucleotide" id="vbtn-radio-first-nucleotide-C" autocomplete="off" value="C">
                                 <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-C">C</label>
@@ -89,7 +89,7 @@
                                 <label class="btn btn-outline-primary" for="vbtn-radio-first-nucleotide-G">G</label>
                             </div>
                             <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-                                <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-U" autocomplete="off"  value="U" checked>
+                                <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-U" autocomplete="off"  value="U" >
                                 <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-U">U</label>
                                 <input type="radio" class="btn-check" name="vbtn-radio-second-nucleotide" id="vbtn-radio-second-nucleotide-C" autocomplete="off" value="C">
                                 <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-C">C</label>
@@ -99,7 +99,7 @@
                                 <label class="btn btn-outline-primary" for="vbtn-radio-second-nucleotide-G">G</label>
                             </div>
                             <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
-                                <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-U" autocomplete="off"  value="U" checked>
+                                <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-U" autocomplete="off"  value="U" >
                                 <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-U">U</label>
                                 <input type="radio" class="btn-check" name="vbtn-radio-third-nucleotide" id="vbtn-radio-third-nucleotide-C" autocomplete="off" value="C">
                                 <label class="btn btn-outline-primary" for="vbtn-radio-third-nucleotide-C">C</label>
@@ -113,10 +113,11 @@
                     <div class="col-md-8 box align-self-center">
                         <div class="container text-center">
                             <div class="row-1 align-self-center">
-                                <h3 id="txt-amino-acid">(PHE) - Phénylalanine</h3>
+                                <h3 id="txt-amino-acid" class="placeholder-glow"><span class="placeholder col-1"></span> - <span class="placeholder col-4"></span></h3>
                             </div>
                             <div class="border border-black rounded row-3 align-content-center" style="height: 150px;">
-                                <img src="./content/amino_acids/phe.png" style="height: 95%; width: auto;" alt="Amino acid" id="img-amino-acid">
+                                <div class="spinner-border" id="spinner-amino-acid"></div>
+                                <img hidden style="height: 95%; width: auto;" alt="Amino acid" id="img-amino-acid">
                             </div>
                         </div>
                     </div>

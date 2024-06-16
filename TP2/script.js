@@ -1,20 +1,19 @@
-const init = () => {
-    console.log("init")
-
-
-
-}
-
-const validateForm = () => {
-    console.log("form")
-    return "hello"
-}
-
+firstInput = true
 
 function getCodon() {
     firstNucleotide  = getSelectedNucleotide( document.getElementsByName('vbtn-radio-first-nucleotide') )
     secondNucleotide = getSelectedNucleotide( document.getElementsByName('vbtn-radio-second-nucleotide') )
     thirdNucleotide  = getSelectedNucleotide( document.getElementsByName('vbtn-radio-third-nucleotide') )
+
+    if (firstNucleotide === undefined || secondNucleotide === undefined || thirdNucleotide === undefined) {
+        return
+    }
+
+    if (firstInput) {
+        document.getElementById('spinner-amino-acid').remove()
+        document.getElementById('img-amino-acid').hidden = false
+        firstInput = false
+    }
 
     const codon = firstNucleotide + secondNucleotide + thirdNucleotide
     console.log(codon)
@@ -55,8 +54,6 @@ function getSelectedNucleotide(nucleotides) {
     for (let i=0; i<nucleotides.length; i++) {
         if (nucleotides[i].checked) {
             return nucleotides[i].value
-            console.log(firstNucleotides[i].value)
-            break
         }
     } 
 }
@@ -68,9 +65,6 @@ function getSelectedNucleotide(nucleotides) {
 function selectNucleotide(index, nucleotide) {
     //console.log(index, nucleotide)
 }
-
-validateForm()
-init()
 
 
 AMINO_ACIDS = {
