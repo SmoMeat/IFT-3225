@@ -38,6 +38,12 @@
         .base img.show {
             display: block;
         }
+
+        #animation #arnList {
+            height: auto; 
+            overflow-y: auto; /* add a scroll bar */
+            
+        }
     </style>
     <script type="text/javascript" src="script.js"></script>
 </head>
@@ -141,6 +147,7 @@
                         <input id="textArea">
                         <button id="startAnimation">Go!</button>
                         <button id="reset">reset</button>
+                        <input id="speed" type="range" min=100 max=1500 step=100>
                     </div>  
                 </div>
                 <div class="row rounded-bottom-4 padding p-3  text-center bg-white">

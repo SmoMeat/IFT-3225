@@ -163,8 +163,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const arnChain = document.getElementById("arnChain");
     const divAnim = document.getElementById("animation");
     const arnList = document.getElementById("arnList");
+    const rangeInput = document.getElementById('speed');
 
     let intervalId;
+    const updateValue = () => {
+        const speed = rangeInput.value;
+        //console.log(`Speed updated to: ${speed}`);
+        clearInterval(intervalId);
+        intervalId = setInterval(highlightBases, speed);
+    };
+
+    rangeInput.addEventListener('input', updateValue);
+
+    updateValue();
+
+    
+
+    
     let index;
 
     startAnimation.addEventListener('click', parseInput);
@@ -226,11 +241,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         arnList.innerHTML = "";
 
         // create custom html element with the chunks to the be able to style it with anim
-
-        // ********
-
-        // BE ABLE TO MODIFY THE SPEED WITH A SLIDER
-
         if (chunks !== null) {
             for (let e of chunks) {
                 if (e.length === 3) {
@@ -249,8 +259,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             clearInterval(intervalId);
             // ***
-            let animSpeed = 500;
-            intervalId = setInterval(highlightBases, animSpeed);
+            intervalId = setInterval(highlightBases, rangeInput.value);
         }
     }
 
