@@ -18,6 +18,7 @@
             transition: color 0.5s, transform 0.5s;
             position: relative;
             margin: 0 10px;
+            z-index: 0;
         }
 
         .highlight {
@@ -33,10 +34,20 @@
             display: none;
             width: 50px;
             height: 50px;
+            border: 1px solid;
+            border-radius: 3px;
+            background-color: rgb(255, 255, 255, 1);
+            z-index: 10;
         }
 
         .base img.show {
             display: block;
+        }
+
+        #animation #arnList {
+            height: auto; 
+            overflow-y: auto; /* add a scroll bar */
+            
         }
     </style>
     <script type="text/javascript" src="script.js"></script>
@@ -55,7 +66,7 @@
             <h1 class="fw-bold fs-1">Projet de bio-informatique</h1>
             <h3 class="fw-light fs-5 lh-1">Technologies de l'Internet (IFT-3225)</h3>
             <h3 class="fw-light fs-5 lh-1">Travail pratique 1</h3>
-            <p>Cette page web a été réalisé dans le cadre du premier travail pratique du cours des Technologies de l'Internet (IFT-3225) à l'Université de Montréal. Le but du projet est de créer
+            <p>Cette page web a été réalisée dans le cadre du premier travail pratique du cours des Technologies de l'Internet (IFT-3225) à l'Université de Montréal. Le but du projet est de créer
                 une application côté client qui permet de répondre à des questions de bio-informatique. Ce projet est réalisé avec Bootstrap et Javascript.</p>
             
             <a href="#first-task" role="button" class="btn btn-primary btn-lg">Premiere tache</a>
@@ -68,12 +79,9 @@
             <div class="col-md-2"></div>
             <div class="col-md-8 ">
                 <div class="row rounded-top bg-dark-subtle p-2">
-                    <div class="col-md-3 p-0 fw-semibold">
-                        Formation d'un acide aminé:
+                    <div class="d-inline fw-light">
+                        <span class="fw-semibold">Formation d'un acide aminé:</span> séléctionner 3 nucélotides pour observer l'acide aminé formé
                     </div>
-                    <div class="col-md-9 p-0 fw-light">
-                        séléctionner 3 nucélotides pour observer l'acide aminé formé
-                    </div>  
                 </div>
                 <div class="row rounded-bottom-4 padding p-3  text-center bg-white">
                     <div class="col-md-4 mb-1 box align-self-center">
@@ -133,38 +141,32 @@
             <div class="col-md-2"></div>
             <div class="col-md-8 ">
                 <div class="row rounded-top bg-dark-subtle p-2">
-                    <div class="col-md-2 p-0 fw-semibold">
-                        Suite de codons:
+                    <div class="d-inline fw-light">
+                        <span class="fw-semibold">Suite de codons:</span> entrez une chaine d'ARN
                     </div>
-                    <div class="col-md-10 p-0 fw-light">
-                        entrez une chaine d'ARN
-                        <input id="textArea">
-                        <button id="startAnimation">Go!</button>
-                        <button id="reset">reset</button>
-                    </div>  
                 </div>
-                <div class="row rounded-bottom-4 padding p-3  text-center bg-white">
-                    
-
-                    <div style="height: 300px;">
-
-                        <!-- HERE -->
-
+                <div class="row border-bottom border-primary p-3 bg-white">
+                    <div class=" col-lg-7">
+                        <input class="form-control" id="textArea" placeholder="Chaine d'arn à animer">
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-success btn-sm" id="startAnimation">Go!</button>
+                        <button class="btn btn-danger btn-sm" id="reset">Reset</button>
+                    </div>
+                    <div class="col-lg-3">
+                        <span class="fw-light">Vitesse d'animation</span>
+                        <input id="speed" type="range" min=100 max=1500 step=100>
+                    </div>
+                </div>
+                <div class="row rounded-bottom-4 padding p-3 text-center bg-white">
+                    <div>
                         <br>
                         <h1 id="arnChain"></h1>
-                        <div id="animation">
-
-
-                        </div>
+                        <div id="animation"></div>
+                        <div class="spinner-grow" id="spinner-animation" role="status"></div>
                         <br><br><br>
-
-                        <ul id="arnList">
-
-                        </ul>
-
-                        <!-- TO HERE -->
+                        <ul class="list-group" id="amino-acids-list"></ul>
                     </div>
-
                 </div>
             </div>
             <div class="col-md-2"></div>
@@ -173,9 +175,9 @@
     </div>
 
     <footer>
-        <div class="text-center text-white p-3 bg-primary" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="text-center text-white p-3 bg-primary">
             Réalisé par <a class="text-white" href="mailto: mathieu.ducharme@umontreal.ca" title="20297456">Mathieu Ducharme</a>
-            et <a class="text-white" href="mailto: ???@umontreal.ca" title="???">Laurent-Phillipe Roy-Lemaire </a>
+            et <a class="text-white" href="mailto: laurent.phillipe.roy.lemaire@umontreal.ca" title="20074007">Laurent-Phillipe Roy-Lemaire</a>
         </div>
     </footer>
 

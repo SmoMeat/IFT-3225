@@ -1,4 +1,4 @@
-firstInput = true
+let firstInput = true
 
 function getCodon() {
     firstNucleotide  = getSelectedNucleotide( document.getElementsByName('vbtn-radio-first-nucleotide') )
@@ -22,17 +22,6 @@ function getCodon() {
     console.log(aminoAcid)
     changeAminoAcidImage(aminoAcid[0])
     changeAminoAcidText(aminoAcid)
-    // firstNucleotideValue = ""
-
-    // console.log(firstNucleotides)
-
-    // for (let i=0; i<firstNucleotides.length; i++) {
-    //     if (firstNucleotides[i].checked) {
-    //         console.log(firstNucleotides[i].value)
-    //         break
-    //     }
-    // }
-    //console.log(document.querySelector('#first-nucleotide').value)
     
 }
 
@@ -56,14 +45,6 @@ function getSelectedNucleotide(nucleotides) {
             return nucleotides[i].value
         }
     } 
-}
-
-// const selectNucleotide = (index, nucleotide) => {
-//     console.log(index, nucleotide)
-// }
-
-function selectNucleotide(index, nucleotide) {
-    //console.log(index, nucleotide)
 }
 
 
@@ -136,55 +117,67 @@ AMINO_ACIDS = {
 
 let index = 0;
 function highlightBases() {
-    const bases = document.querySelectorAll('.base');
-    if (index < bases.length) {
+    const aminoAcidStrings = document.querySelectorAll('.base');
+    const aminoAcidList = document.querySelectorAll('.amino-acid-list-element');
+
+    console.log(aminoAcidList)
+    console.log(aminoAcidStrings)
+
+    if (index < aminoAcidStrings.length) {
         if (index === 0) {
-            bases[index].classList.add('highlight');
-            bases[index].querySelector('img').classList.add('show');
+            aminoAcidStrings[index].classList.add('highlight');
+            aminoAcidStrings[index].querySelector('img').classList.add('show');
+            aminoAcidList[index].classList.add('active')
         } else {
-            bases[index - 1].classList.remove('highlight');
-            bases[index - 1].querySelector('img').classList.remove('show');
-            bases[index].classList.add('highlight');
-            bases[index].querySelector('img').classList.add('show');
+            aminoAcidStrings[index - 1].classList.remove('highlight');
+            aminoAcidStrings[index - 1].querySelector('img').classList.remove('show');
+            aminoAcidList[index - 1].classList.remove('active');
+            aminoAcidStrings[index].classList.add('highlight');
+            aminoAcidStrings[index].querySelector('img').classList.add('show');
+            aminoAcidList[index].classList.add('active');
         }
         index++;
     } else {
-        bases.forEach(base => {
+        aminoAcidStrings.forEach(base => {
             base.classList.remove('highlight');
             base.querySelector('img').classList.remove('show');
+        })
+        aminoAcidList.forEach(aminoAcidItem => {
+            aminoAcidItem.classList.remove('active');
         });
         index = 0;
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const startAnimation = document.getElementById("startAnimation");
     const resetButton = document.getElementById("reset");
     const arnChain = document.getElementById("arnChain");
     const divAnim = document.getElementById("animation");
-    const arnList = document.getElementById("arnList");
+    const arnList = document.getElementById("amino-acids-list");
+    const rangeInput = document.getElementById('speed');
+    const spinnerAnimation = document.getElementById("spinner-animation")
 
     let intervalId;
-    let index;
+    let createAminoAcidsTableInterval;
+    let codonCounter
+    let chunks;
+    let generator = liGenerator();
+    
+    const updateValue = () => {
+        const speed = rangeInput.value;
+        clearInterval(intervalId);
+        intervalId = setInterval(highlightBases, 1600 - speed);
+    };
 
+    rangeInput.addEventListener('input', updateValue);
+
+    updateValue();
+    
     startAnimation.addEventListener('click', parseInput);
     resetButton.addEventListener('click', reset);
 
-    function createLI(codon, code, fullname) {
-        let li = document.createElement('li');
-
-        let img = document.createElement('img');
-        img.src = `./content/amino_acids/${code}.png`;
-        img.alt = "Image";
-
-        let p = document.createElement('p');
-        p.textContent = `${codon} => ${code}, ${fullname}`;
-
-        li.appendChild(img);
-        li.appendChild(p);
-
-        return li;
-    }
 
     function createDivForAnim(chunks) {
         let d = document.createElement('div');
@@ -192,6 +185,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let s = document.createElement('span');
             let img = document.createElement('img');
             if (e.length === 3) {
+                codonCounter += 1;
                 s.innerHTML = e;
                 let code = AMINO_ACIDS[e];
                 img.src = `./content/amino_acids/${code[0]}.png`;
@@ -207,9 +201,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function parseInput() {
-        arnList.innerHTML = "";
-        arnChain.innerHTML = "";
-        divAnim.innerHTML = "";
+        reset()
+        spinnerAnimation.hidden = true
         const keys = ['U', 'C', 'A', 'G'];
         const inp = textArea.value.toUpperCase();
         for (const e of inp) {
@@ -221,36 +214,53 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         textArea.value = "";
         const res = inp.toUpperCase();
-        const chunks = res.match(/.{1,3}/g);
-        //arnChain.textContent = res;
+        chunks = res.match(/.{1,3}/g);
         arnList.innerHTML = "";
 
         // create custom html element with the chunks to the be able to style it with anim
-
-        // ********
-
-        // BE ABLE TO MODIFY THE SPEED WITH A SLIDER
-
+        console.log(chunks)
         if (chunks !== null) {
-            for (let e of chunks) {
-                if (e.length === 3) {
-                    // codon = e
-                    let tableau = AMINO_ACIDS[e];
-                    let code = tableau[0];
-                    let fullname = tableau[1];
-                
-                    arnList.appendChild(createLI(e, code, fullname));
-                } else {
-                    console.log(`unfinished codon ${e}`);
-                }
-            }
+
+            console.log('arn list: ' + arnList.tabIndex)
             let d = createDivForAnim(chunks);
             divAnim.appendChild(d);
 
             clearInterval(intervalId);
+            clearInterval(createAminoAcidsTableInterval);
             // ***
-            let animSpeed = 500;
-            intervalId = setInterval(highlightBases, animSpeed);
+            intervalId = setInterval(highlightBases, 1600 - rangeInput.value);
+            createAminoAcidsTableInterval = setInterval(appendAminoAcidToList, 1600 - rangeInput.value)
+        }
+    }
+
+    function* liGenerator() {
+        for (let chunk of chunks) {
+            yield chunk
+        }
+    }
+
+    
+    function appendAminoAcidToList() {
+        const codon = generator.next().value
+
+        if (codon != undefined && codon.length == 3) {
+            const aminoAcidsAbrevation = AMINO_ACIDS[codon][0]
+            const aminoAcidsFullname = AMINO_ACIDS[codon][1]
+            let li = document.createElement('li');
+            li.classList.add("list-group-item")
+            li.classList.add("amino-acid-list-element")
+    
+            let img = document.createElement('img');
+            img.src = `./content/amino_acids/${aminoAcidsAbrevation}.png`;
+            img.alt = "Image";
+    
+            let p = document.createElement('p');
+            p.textContent = `${codon} se transforme en (${aminoAcidsAbrevation.toUpperCase()}) - ${aminoAcidsFullname}`;
+    
+            li.appendChild(img);
+            li.appendChild(p);
+    
+            arnList.appendChild(li);
         }
     }
 
@@ -258,6 +268,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
         // reset second part
         clearInterval(intervalId);
+        clearInterval(createAminoAcidsTableInterval)
+        generator = liGenerator()
+
         let b = document.querySelectorAll("base");
         b.forEach(base => {
             base.classList.remove('highlight');
@@ -267,5 +280,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         arnList.innerHTML = "";
         arnChain.innerHTML = "";
         divAnim.innerHTML = "";
+
+        spinnerAnimation.hidden = false
     }
 })
